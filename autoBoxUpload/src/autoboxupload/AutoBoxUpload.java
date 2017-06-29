@@ -19,6 +19,11 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import com.box.sdk.BoxAPIConnection;
+import com.box.sdk.BoxFolder;
+import com.box.sdk.BoxItem;
+import com.box.sdk.BoxUser;
+
 /**
  *
  * @author mrose
@@ -29,14 +34,18 @@ public class AutoBoxUpload extends JApplet {
     private static final int JFXPANEL_HEIGHT_INT = 250;
     private static JFXPanel fxContainer;
 
+    BoxAPIConnection api = new BoxAPIConnection("SUJuRBL9xYmoDho3NTkAoue1oOZiTXbs"); //This code is from the example on the box developer site. http://opensource.box.com/box-java-sdk/
+    BoxFolder rootFolder = BoxFolder.getRootFolder(api);
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             
+
             @Override
-            public void run() {
+            public void run() { //THIS IS AUTO GENERATED CODE
                 try {
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
                 } catch (Exception e) {
@@ -80,8 +89,13 @@ public class AutoBoxUpload extends JApplet {
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+            public void handle(ActionEvent event) { //event handler for the button that was created
+                for (BoxItem.Info itemInfo : rootFolder) { 
+                    //loop through root folder and list files/folders. Output appears within the terminal
+                    System.out.format("[%s] %s\n", itemInfo.getID(), itemInfo.getName());
+                    
+                }
+
             }
         });
         StackPane root = new StackPane();
