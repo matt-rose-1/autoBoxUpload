@@ -1,3 +1,14 @@
+package autoboxupload;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+
+import java.net.URL;
+import java.io.IOException;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +19,11 @@
  *
  * @author mrose
  */
-public class FilesFromBox extends javax.swing.JFrame {
+
+public class FilesFromBox extends javax.swing.JFrame implements TreeSelectionListener{
+
+        private static boolean DEBUG = false;
+    private URL helpURL;
 
     /**
      * Creates new form FilesFromBox
@@ -32,6 +47,10 @@ public class FilesFromBox extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setViewportView(jTree1);
+        jTree1.getSelectionModel().setSelectionMode
+        (TreeSelectionModel.SINGLE_TREE_SELECTION);
+
+        jTree1.addTreeSelectionListener(this);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,12 +103,42 @@ public class FilesFromBox extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FilesFromBox().setVisible(true);
+                
+                
+                
             }
         });
     }
+    
+        /** Required by TreeSelectionListener interface. */
+    public void valueChanged(TreeSelectionEvent e) {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode)
+                           jTree1.getLastSelectedPathComponent();
+
+        if (node == null) return;
+        
+        Object nodeInfo = node.getUserObject();
+        
+        if(node.isLeaf()) {
+            System.out.print(node.toString());
+        }
+        else {
+            System.out.print(node.toString());
+        }
+        
+
+    }
+    
+        
+        
+        
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
+
+

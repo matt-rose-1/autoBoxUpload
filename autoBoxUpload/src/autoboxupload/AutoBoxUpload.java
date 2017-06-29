@@ -36,6 +36,8 @@ public class AutoBoxUpload extends JApplet {
 
     BoxAPIConnection api = new BoxAPIConnection("DEVELOPER_TOKEN_HERE"); //This code is from the example on the box developer site. http://opensource.box.com/box-java-sdk/
     BoxFolder rootFolder = BoxFolder.getRootFolder(api);
+    
+    FilesFromBox myFrame = new FilesFromBox();
 
     /**
      * @param args the command line arguments
@@ -90,11 +92,11 @@ public class AutoBoxUpload extends JApplet {
             
             @Override
             public void handle(ActionEvent event) { //event handler for the button that was created
-                for (BoxItem.Info itemInfo : rootFolder) { 
-                    //loop through root folder and list files/folders. Output appears within the terminal
-                    System.out.format("[%s] %s\n", itemInfo.getID(), itemInfo.getName());
-                    
-                }
+//                for (BoxItem.Info itemInfo : rootFolder) { 
+//                    //loop through root folder and list files/folders. Output appears within the terminal
+//                    System.out.format("[%s] %s\n", itemInfo.getID(), itemInfo.getName());
+//                }
+                myFrame.setVisible(true);
 
             }
         });
