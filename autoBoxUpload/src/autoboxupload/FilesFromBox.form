@@ -47,7 +47,7 @@
       <SubComponents>
         <Component class="javax.swing.JTree" name="jTree1">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTree1.getSelectionModel().setSelectionMode&#xa;    (TreeSelectionModel.SINGLE_TREE_SELECTION);&#xa;&#xa;jTree1.addTreeSelectionListener(this);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTree1.getSelectionModel().setSelectionMode //allows only a single node to be selected at a time&#xa;    (TreeSelectionModel.SINGLE_TREE_SELECTION);&#xa;&#xa;jTree1.addTreeSelectionListener(this);"/>
           </AuxValues>
         </Component>
       </SubComponents>

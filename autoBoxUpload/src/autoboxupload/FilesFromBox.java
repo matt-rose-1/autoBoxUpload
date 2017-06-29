@@ -47,7 +47,7 @@ public class FilesFromBox extends javax.swing.JFrame implements TreeSelectionLis
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setViewportView(jTree1);
-        jTree1.getSelectionModel().setSelectionMode
+        jTree1.getSelectionModel().setSelectionMode //allows only a single node to be selected at a time
         (TreeSelectionModel.SINGLE_TREE_SELECTION);
 
         jTree1.addTreeSelectionListener(this);
