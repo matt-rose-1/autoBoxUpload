@@ -18,7 +18,7 @@ import com.box.sdk.BoxItem;
 import com.box.sdk.BoxUser;
 
 public final class MainApp {
-    private static final String DEVELOPER_TOKEN = "SUJuRBL9xYmoDho3NTkAoue1oOZiTXbs";
+    private static final String DEVELOPER_TOKEN = "DEVELOPER_TOKEN_HERE";
     private static final int MAX_DEPTH = 1;
 
     MainApp() { }
