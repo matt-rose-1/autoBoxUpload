@@ -34,7 +34,7 @@ public class AutoBoxUpload extends JApplet {
     private static final int JFXPANEL_HEIGHT_INT = 250;
     private static JFXPanel fxContainer;
 
-    BoxAPIConnection api = new BoxAPIConnection("SUJuRBL9xYmoDho3NTkAoue1oOZiTXbs"); //This code is from the example on the box developer site. http://opensource.box.com/box-java-sdk/
+    BoxAPIConnection api = new BoxAPIConnection("DEVELOPER_TOKEN_HERE"); //This code is from the example on the box developer site. http://opensource.box.com/box-java-sdk/
     BoxFolder rootFolder = BoxFolder.getRootFolder(api);
 
     /**
