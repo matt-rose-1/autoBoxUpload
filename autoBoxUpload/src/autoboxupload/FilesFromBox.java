@@ -1,12 +1,19 @@
 package autoboxupload;
+
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
+
 import java.net.URL;
 import java.io.IOException;
+
+import com.box.sdk.BoxAPIConnection;
+import com.box.sdk.BoxFolder;
+import com.box.sdk.BoxItem;
+import com.box.sdk.BoxUser;
 
 
 /*
@@ -14,22 +21,29 @@ import java.io.IOException;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author mrose
  */
+public class FilesFromBox extends javax.swing.JFrame implements TreeSelectionListener {
 
-public class FilesFromBox extends javax.swing.JFrame implements TreeSelectionListener{
-
-        private static boolean DEBUG = false;
+    private static boolean DEBUG = false;
     private URL helpURL;
+    
+//    BoxAPIConnection api = new BoxAPIConnection("DEVELOPER_TOKEN_HERE"); //This code is from the example on the box developer site. http://opensource.box.com/box-java-sdk/
+//    BoxFolder rootFolder = BoxFolder.getRootFolder(api);
 
     /**
      * Creates new form FilesFromBox
      */
     public FilesFromBox() {
         initComponents();
+//        for (BoxItem.Info itemInfo : rootFolder) {
+            //loop through root folder and list files/folders. Output appears within the terminal
+//            System.out.format("[%s] %s\n", itemInfo.getID(), itemInfo.getName());
+            
+//        }
+
     }
 
     /**
@@ -103,42 +117,33 @@ public class FilesFromBox extends javax.swing.JFrame implements TreeSelectionLis
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FilesFromBox().setVisible(true);
-                
-                
-                
             }
         });
     }
-    
-        /** Required by TreeSelectionListener interface. */
-    public void valueChanged(TreeSelectionEvent e) {
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode)
-                           jTree1.getLastSelectedPathComponent();
 
-        if (node == null) return;
-        
+    /**
+     * Required by TreeSelectionListener interface.
+     */
+    public void valueChanged(TreeSelectionEvent e) {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) jTree1.getLastSelectedPathComponent();
+
+        if (node == null) {
+            return;
+        }
+
         Object nodeInfo = node.getUserObject();
-        
-        if(node.isLeaf()) {
+
+        if (node.isLeaf()) {
+            System.out.print(node.toString());
+        } else {
             System.out.print(node.toString());
         }
-        else {
-            System.out.print(node.toString());
-        }
-        
 
     }
-    
-        
-        
-        
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
-
-

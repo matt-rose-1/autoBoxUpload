@@ -7,102 +7,70 @@ package autoboxupload;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javax.swing.JApplet;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.*;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-
-import com.box.sdk.BoxAPIConnection;
-import com.box.sdk.BoxFolder;
-import com.box.sdk.BoxItem;
-import com.box.sdk.BoxUser;
+import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  *
  * @author mrose
  */
-public class AutoBoxUpload extends JApplet {
-    
-    private static final int JFXPANEL_WIDTH_INT = 300;
-    private static final int JFXPANEL_HEIGHT_INT = 250;
-    private static JFXPanel fxContainer;
+public class AutoBoxUpload extends JFrame {
 
-    BoxAPIConnection api = new BoxAPIConnection("DEVELOPER_TOKEN_HERE"); //This code is from the example on the box developer site. http://opensource.box.com/box-java-sdk/
-    BoxFolder rootFolder = BoxFolder.getRootFolder(api);
-    
-    FilesFromBox myFrame = new FilesFromBox();
+    private static final int JFXPANEL_WIDTH_INT = 500;
+    private static final int JFXPANEL_HEIGHT_INT = 350;
+    private JLabel logoHolder;
+    private ImageIcon logo, newLogo;
+    private Image image;
+    private File file = new File("images/RadTechLogo2.png");
+    BufferedImage buffImg = null;
 
     /**
      * @param args the command line arguments
      */
+    public AutoBoxUpload() {
+//        super("Login To Box.com");
+//
+//        this.setLayout(new BorderLayout());
+//
+//        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); //what to do when the window closes.
+//        this.setSize(JFXPANEL_WIDTH_INT, JFXPANEL_HEIGHT_INT); //set size of the window
+//        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize(); //get dimension of screen
+//        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2); //set window to middle of user's screen
+//
+//        //LOAD THE LOGO
+//        try {
+//            buffImg = ImageIO.read(getClass().getClassLoader().getResource("images/RadTechLogo2.png")); 
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Image reBuffImg = buffImg.getScaledInstance(JFXPANEL_WIDTH_INT/2, JFXPANEL_HEIGHT_INT/4, Image.SCALE_SMOOTH);
+//        logoHolder = new JLabel(new ImageIcon(reBuffImg));
+//        this.add(logoHolder, BorderLayout.PAGE_START);
+//
+//        //LOAD THE USERNAME
+//        
+//        this.setVisible(true);
+    }
+
+    private static void createAndShowGUI() {
+//        AutoBoxUpload me = new AutoBoxUpload();
+            LoginToBox t = new LoginToBox();
+            t.setVisible(true);
+    }
+
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            
-
-            @Override
-            public void run() { //THIS IS AUTO GENERATED CODE
-                try {
-                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-                } catch (Exception e) {
-                }
-                
-                JFrame frame = new JFrame("JavaFX 2 in Swing");
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                
-                JApplet applet = new AutoBoxUpload();
-                applet.init();
-                
-                frame.setContentPane(applet.getContentPane());
-                
-                frame.pack();
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-                
-                applet.start();
-            }
-        });
-    }
-    
-    @Override
-    public void init() {
-        fxContainer = new JFXPanel();
-        fxContainer.setPreferredSize(new Dimension(JFXPANEL_WIDTH_INT, JFXPANEL_HEIGHT_INT));
-        add(fxContainer, BorderLayout.CENTER);
-        // create JavaFX scene
-        Platform.runLater(new Runnable() {
-            
-            @Override
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createScene();
+                createAndShowGUI();
             }
         });
     }
-    
-    private void createScene() {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) { //event handler for the button that was created
-//                for (BoxItem.Info itemInfo : rootFolder) { 
-//                    //loop through root folder and list files/folders. Output appears within the terminal
-//                    System.out.format("[%s] %s\n", itemInfo.getID(), itemInfo.getName());
-//                }
-                myFrame.setVisible(true);
-
-            }
-        });
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        fxContainer.setScene(new Scene(root));
-    }
-    
 }
